@@ -1,0 +1,9 @@
+.app {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 0;
+
+  min-width: 250px;
+}

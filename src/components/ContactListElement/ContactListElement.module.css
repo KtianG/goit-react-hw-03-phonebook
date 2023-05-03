@@ -1,0 +1,10 @@
+.listElement {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-right: 5px;
+}
+li {
+  display: flex;
+  margin-bottom: 5px;
+}

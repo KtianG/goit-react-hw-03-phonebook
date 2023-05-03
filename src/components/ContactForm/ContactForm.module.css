@@ -1,0 +1,9 @@
+.contactForm {
+  border: 1px solid black;
+  padding: 0 20px 20px;
+}
+
+.button {
+  display: block;
+  margin-top: 30px;
+}
