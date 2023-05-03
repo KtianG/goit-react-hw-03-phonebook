@@ -33,7 +33,9 @@ export class App extends Component {
       number: new_number,
     };
 
-    this.setState({ contacts: [...this.state.contacts, new_contact] });
+    const new_contacts_array = [...this.state.contacts, new_contact];
+    this.setState({ contacts: new_contacts_array });
+    localStorage.setItem('contacts', JSON.stringify(new_contacts_array));
   };
 
   handleSubmitNewContact = e => {
@@ -50,7 +52,12 @@ export class App extends Component {
     const { contacts } = this.state;
     const new_array = contacts.filter(({ name }) => name !== name_to_remove);
     this.setState({ contacts: new_array });
+
+    //Added for HW-3
+    localStorage.setItem('contacts', JSON.stringify(new_array));
+    //END
   };
+
   setFilter = text => {
     this.setState({ filter: text });
   };
@@ -62,6 +69,20 @@ export class App extends Component {
     );
     return filteredContacts;
   };
+
+  // Added for HW-3
+  async componentDidMount() {
+    const contacts_storage = localStorage.getItem('contacts');
+
+    if (contacts_storage != null) {
+      const contacts_array = JSON.parse(contacts_storage);
+      this.setState({ contacts: contacts_array });
+    } else {
+      const { contacts } = this.state;
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+  //END
 
   render() {
     const filteredContacts = this.filterContacts();
